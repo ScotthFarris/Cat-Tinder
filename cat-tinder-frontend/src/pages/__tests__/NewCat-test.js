@@ -23,6 +23,11 @@ it('has a enjoys input', ()=>{
   expect(component.find('label#enjoys').text()).toBe("Enjoys")
 })
 
+it('has a city input', ()=>{
+  const component = mount(<NewCat />)
+  expect(component.find('label#city').text()).toBe("City")
+})
+
 it('has a submit button', ()=>{
   const component = mount(<NewCat />)
   expect(component.find('button#submit').text()).toBe("Create Cat Profile")
@@ -41,6 +46,7 @@ it("passes values on submit", ()=>{
   component.find('input[name="name"]').simulate('change', {target: {value: 'Paws', name: 'name'}})
   component.find('input[name="age"]').simulate('change', {target: {value: 2, name: 'age'}})
   component.find('textarea[name="enjoys"]').simulate('change', {target: {value: 'Scratches', name: 'enjoys'}})
+  component.find('input[name="city"]').simulate('change', {target: {value: 'San Diego', name: 'city'}})
   component.find('button#submit').simulate('click', {button: 0})
 
   const submittedValues = mockSubmitHandler.mock.calls[0][0]
@@ -48,6 +54,7 @@ it("passes values on submit", ()=>{
   expect(submittedValues["name"]).toBe("Paws")
   expect(submittedValues["age"]).toBe(2)
   expect(submittedValues["enjoys"]).toBe("Scratches")
+  expect(submittedValues["city"]).toBe("San Diego")
 })
 
 it("does not show flash message when there is no error", ()=>{
@@ -178,4 +185,22 @@ it("shows help message for enjoys when there is an error", ()=>{
   ]
   const component = mount(<NewCat onSubmit={mockSubmitHandler} errors={validationErrors}/>)
   expect(component.find("#enjoys-help-block").length).toBe(1)
+})
+
+it("no help message for city when there is no error", ()=>{
+  const mockSubmitHandler = jest.fn()
+  const component = mount(<NewCat onSubmit={mockSubmitHandler}/>)
+  expect(component.find("#city-help-block").length).toBe(0)
+})
+
+it("shows help message for city when there is an error", ()=>{
+  const mockSubmitHandler = jest.fn()
+  const validationErrors = [
+    {
+      param: 'city',
+      msg: 'Is required.'
+    }
+  ]
+  const component = mount(<NewCat onSubmit={mockSubmitHandler} errors={validationErrors}/>)
+  expect(component.find("#city-help-block").length).toBe(1)
 })

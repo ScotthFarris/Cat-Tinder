@@ -5,7 +5,7 @@ import {
     Col,
   Row
 } from 'react-bootstrap'
-import App from '../App.js';
+
 
 class Cats extends Component {
   render() {
@@ -22,11 +22,14 @@ class Cats extends Component {
                       <span className='cat-name'>
                         {cat.name}
                       </span>
-                       <small className='cat-age'>{cat.age} years old</small>
+                       <small className='cat-age'>   {cat.age} years old</small>
                     </h4>
                   }>
                   <span className='cat-enjoys'>
                     {cat.enjoys}
+                  </span>
+                  <span className='cat-city'>
+                    {cat.city}
                   </span>
                 </ListGroupItem>
               )

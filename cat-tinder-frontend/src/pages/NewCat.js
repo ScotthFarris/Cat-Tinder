@@ -17,7 +17,8 @@ class NewCat extends Component {
       form: {
       name: '',
       age: '',
-      enjoys: ''
+      enjoys: '',
+      city: ''
     }
   }
 }
@@ -88,6 +89,18 @@ handleSubmit(){
             <FormControl componentClass='textarea' name= "enjoys" onChange={this.handleChange.bind(this)} value={this.state.form.enjoys}/>
             {this.errorsFor('enjoys') &&
     <HelpBlock id="enjoys-help-block">{this.errorsFor('enjoys')}</HelpBlock>
+  }
+          </FormGroup>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={6}>
+          <FormGroup id="city-form-group" validationState={this.errorsFor('city') && 'error'}>
+            <ControlLabel id="city">City</ControlLabel>
+            <FormControl type="text" name="city" onChange={this.handleChange.bind(this)} value={this.state.form.city}
+            />
+            {this.errorsFor('city') &&
+    <HelpBlock id="city-help-block">{this.errorsFor('city')}</HelpBlock>
   }
           </FormGroup>
         </Col>

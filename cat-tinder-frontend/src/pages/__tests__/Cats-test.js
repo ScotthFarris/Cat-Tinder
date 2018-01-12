@@ -8,19 +8,22 @@ const cats = [
     id: 1,
     name: 'Morris',
     age: 2,
-    enjoys: "Long walks on the beach."
+    enjoys: "Long walks on the beach.",
+    city: "San Diego"
   },
   {
     id: 2,
     name: 'Paws',
     age: 4,
-    enjoys: "Snuggling by the fire."
+    enjoys: "Snuggling by the fire.",
+    city: "San Diego"
   },
   {
     id: 3,
     name: 'Mr. Meowsalot',
     age: 12,
-    enjoys: "Being in charge."
+    enjoys: "Being in charge.",
+    city: "San Diego"
   }
 ]
 
@@ -38,8 +41,8 @@ it('Renders the cats', ()=>{
 
 it('Renders the cats name', ()=>{
   const component = mount(<Cats cats={cats} />)
-  const age = component.find('h4 > .cat-name').first()
-  expect(age.text()).toBe("Morris")
+  const name = component.find('h4 > .cat-name').first()
+  expect(name.text()).toBe("Morris")
 })
 
 it('Renders the cat age', ()=>{
@@ -50,6 +53,12 @@ it('Renders the cat age', ()=>{
 
 it('Renders what the cat enjoys', ()=>{
   const component = mount(<Cats cats={cats} />)
-  const age = component.find('.cat-enjoys').first()
-  expect(age.text()).toBe("Long walks on the beach.")
+  const enjoys = component.find('.cat-enjoys').first()
+  expect(enjoys.text()).toBe("Long walks on the beach.")
+})
+
+it('Renders what city ', ()=>{
+  const component = mount(<Cats cats={cats} />)
+  const city = component.find('.cat-city').first()
+  expect(city.text()).toBe("San Diego")
 })
